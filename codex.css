@@ -1,0 +1,48 @@
+.button {
+		height: 50px; 
+		width: 50px;
+		background-image: url(grinning-face.png);
+		opacity: 0.5;
+	}
+.button:focus{
+		height: 50px; 
+	width: 50px;
+		background-image: url(grinning-face1.png);
+	}
+.blockbutton {
+		float: left;
+		height: 50px; 
+		width: 50px;
+		margin-left: 20px;
+		margin-top: 20px;
+		position: static;
+		background-color: green;
+		}
+.blockcount {
+		float: left;
+		height: 50px; 
+		width: 50px;
+		margin-top: 20px;
+		position: static;
+		background-color: red;
+		}
+#block {
+	width: 60%;
+    height: 15%;
+    position: absolute;
+	background-color: green;
+	}
+#blocktext {
+	width: 50%;
+    height: 100%;
+    position: absolute;
+	background-color: yellow;
+	}
+#blockemoji {
+	width: 50%;
+    height: 100%;
+    position: absolute;
+	left: 50%;
+	background-color: blue;
+	}
+	
