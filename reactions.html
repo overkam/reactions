@@ -1,0 +1,47 @@
++<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="codex.css">
+</head>
+<body>
+<div id=block>
+</div>
+<script>
+    class Reactions {
+		constructor(float,blockwidth,blockheight,position,blockcolor){
+			var div = document.createElement('div');
+			div.style.float = float;
+			div.style.width= blockwidth;
+			div.style.height= blockheight;
+			div.style.position= position;
+			div.style.background= blockcolor;
+			document.body.appendChild(div);
+			this.createUi();
+		}
+		
+		createUi(){
+		    console.log(2);
+			
+		
+		
+		}
+	}
+	this.holder
+
+  var blocktext = new Reactions(' ','60%','15%','absolute','green');
+  var blockemoji = new Reactions(' ','50%','100%','absolute','blue');
+  
+</script>
+</body>
+</html>
+
+<!--
+<div id=blocktext></div>
+	<div id=blockemoji>
+		<div class=blockbutton><button name=send1 class=button></button></div>
+		<div class=blockcount></div>
+		<div class=blockbutton><button name=send2 class=button></button></div>
+		<div class=blockcount></div>
+		<div class=blockbutton><button name=send3 class=button></button></div>
+		<div class=blockcount></div>
+	</div>
