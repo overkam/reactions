@@ -1,15 +1,4 @@
-class Reactions {
-constructor(){
-  var d = document.createElement('div');
-  d.className='button';
-  document.body.appendChild(d);
-  this.createUi();
-  }
-
-  createUi(){
-    console.log(2);
-  }
-}
-
-
-var blocktext = new Reactions();
+var block = document.createElement('div');
+block.classList.add('button');
+document.body.appendChild(block);
+console.log(block);

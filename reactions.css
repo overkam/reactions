@@ -16,7 +16,7 @@
 		margin-left: 20px;
 		margin-top: 20px;
 		position: static;
-		background-color: green;
+		background-color: blue;
 }
 .blockcount {
 		float: left;
@@ -32,13 +32,13 @@
     position: absolute;
 		background-color: green;
 }
-#blocktext {
+.blocktext {
 		width: 50%;
     height: 100%;
     position: absolute;
 		background-color: yellow;
 }
-#blockemoji {
+.blockemoji {
 		width: 50%;
     height: 100%;
     position: absolute;
