@@ -14,4 +14,4 @@ block.appendChild(blockemoji);
 blockemoji.appendChild(blockbutton);
 blockbutton.appendChild(button);
 
-button.classList.toggle('buttonfocus');
+button.addEventListener('click', function () { button.classList.toggle('buttonfocus'); });
