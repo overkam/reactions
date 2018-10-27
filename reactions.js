@@ -18,20 +18,11 @@ blockemoji.appendChild(blockcount);
 blockbutton.appendChild(button);
 
 var count = 0;
-var mark = 1;
 
 button.addEventListener('click', function () {
-											if (mark % 2 != 0 ) {
 											 button.classList.toggle('buttonfocus'); 
 											 ++count;
-											 ++mark;
+											 blockcount.innerHTML = count;	
 											 console.log(count);
-											 console.log(mark);
-											 } else {
-											 	--count;
-											 	--mark;
-											 	console.log(count);
-											 	console.log(mark);
-											 }
 											}
 );
