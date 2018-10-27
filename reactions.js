@@ -20,9 +20,13 @@ blockbutton.appendChild(button);
 var count = 0;
 
 button.addEventListener('click', function () {
-											 button.classList.toggle('buttonfocus'); 
-											 ++count;
-											 blockcount.innerHTML = count;	
-											 console.log(count);
-											}
+	if (this.classList.contains('buttonfocus')) {
+ 	button.classList.remove('buttonfocus'); 
+	 --count;
+	} else {	
+	 button.classList.add('buttonfocus'); 
+	 ++count;
+	}
+	blockcount.innerHTML = count;
+	}									
 );
