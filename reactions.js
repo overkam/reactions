@@ -8,7 +8,7 @@ var blockcount = document.createElement('div');
 button.classList.add('reactions__button');
 blocktext.classList.add('reactions__text');
 blockemoji.classList.add('reactions__emoji');
-blockbutton.classList.add('reactions__button--wrapper');
+blockbutton.classList.add('reactions__button-wrapper');
 blockcount.classList.add('reactions__count');
 
 block.appendChild(blocktext);
