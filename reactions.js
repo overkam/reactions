@@ -30,3 +30,4 @@ button.addEventListener('click', function () {
 	blockcount.innerHTML = count;
 	}									
 );
+blocktext.innerHTML = 'How do you like this article?';
