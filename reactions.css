@@ -1,7 +1,8 @@
 .block {
     display: flex;
-    position: static;
     border: 1px solid grey;
+    align-items: center;
+    padding: 20px;
 }
 .button {
     height: 25px;
@@ -9,6 +10,7 @@
     background-size: cover;
     cursor: pointer;
     border-radius: 25px; 
+    margin-left: 20px;
     border: 1px solid grey;
     background-image: url(emojis/grinning-face_1f600.png);
 }
@@ -27,11 +29,12 @@
     border-radius: 25px;
 }
 .blockcount {
+    padding-left: 7px;
 }
-.blocktext {;
+.blocktext {
     text-align: center;
-    vertical-align: : middle;
 }
 .blockemoji {
     display: flex;
+    align-items: center;
 }
