@@ -8,25 +8,18 @@
     height: 25px;
     width: 25px;
     background-size: cover;
-    cursor: pointer;
-    border-radius: 25px; 
-    margin-left: 20px;
-    border: 1px solid grey;
+    margin: 5px;
     background-image: url(emojis/grinning-face_1f600.png);
 }
-.buttonfocus{
-    height: 25px;
-    width: 25px;
-    background-size: cover;
-    cursor: pointer;
-    border-radius: 25px; 
-    background-color: #FF5252;
-    border: 1px solid #FF5252;
-    opacity: 0.9;
-    background-image: url(emojis/grinning-face_1f600.png);
+.blockbuttonfocus{
+    border-radius: 30px;
+    background-color: #fdffc7;
 }
 .blockbutton {
-    border-radius: 25px;
+    border-radius: 30px;
+    border: 1px solid grey;
+    margin-left: 30px;    
+    cursor: pointer; 
 }
 .blockcount {
     padding-left: 7px;
