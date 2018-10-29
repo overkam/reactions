@@ -1,33 +1,33 @@
-.block {
+.reactions {
     display: flex;
     border: 1px solid grey;
     align-items: center;
     padding: 20px;
 }
-.button {
+.reactions__button {
     height: 25px;
     width: 25px;
     background-size: cover;
     margin: 5px;
     background-image: url(emojis/grinning-face_1f600.png);
 }
-.blockbuttonfocus{
+.reactions__elem--active{
     border-radius: 30px;
     background-color: #fdffc7;
 }
-.blockbutton {
+.reactions__button--wrapper {
     border-radius: 30px;
     border: 1px solid grey;
     margin-left: 30px;    
     cursor: pointer; 
 }
-.blockcount {
+.reactions__count {
     padding-left: 7px;
 }
-.blocktext {
+.reactions__text {
     text-align: center;
 }
-.blockemoji {
+.reactions__emoji {
     display: flex;
     align-items: center;
 }

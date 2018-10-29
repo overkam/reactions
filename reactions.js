@@ -1,15 +1,15 @@
-var block = document.querySelector('.block');
+var block = document.querySelector('.reactions');
 var blocktext = document.createElement('div');
 var blockemoji = document.createElement('div');
 var blockbutton = document.createElement('div');
 var button = document.createElement('div');
 var blockcount = document.createElement('div');
 
-button.classList.add('button');
-blocktext.classList.add('blocktext');
-blockemoji.classList.add('blockemoji');
-blockbutton.classList.add('blockbutton');
-blockcount.classList.add('blockcount');
+button.classList.add('reactions__button');
+blocktext.classList.add('reactions__text');
+blockemoji.classList.add('reactions__emoji');
+blockbutton.classList.add('reactions__button--wrapper');
+blockcount.classList.add('reactions__count');
 
 block.appendChild(blocktext);
 block.appendChild(blockemoji);
@@ -20,11 +20,11 @@ blockbutton.appendChild(button);
 var count = 0;
 
 blockbutton.addEventListener('click', function () {
-	if (blockbutton.classList.contains('blockbuttonfocus')) {
- 	blockbutton.classList.remove('blockbuttonfocus'); 
+	if (blockbutton.classList.contains('reactions__elem--active')) {
+ 	blockbutton.classList.remove('reactions__elem--active'); 
 	 --count;
 	} else {	
-	 blockbutton.classList.add('blockbuttonfocus'); 
+	 blockbutton.classList.add('reactions__elem--active'); 
 	 ++count;
 	}
 	blockcount.innerHTML = count;
