@@ -19,7 +19,9 @@ blockbutton.appendChild(button);
 
 var count = 0;
 
-blockbutton.addEventListener('click', function () {
+blockbutton.addEventListener('click', countReactions );
+
+function countReactions(){
 	if (blockbutton.classList.contains('reactions__elem--active')) {
  	blockbutton.classList.remove('reactions__elem--active'); 
 	 --count;
@@ -28,6 +30,5 @@ blockbutton.addEventListener('click', function () {
 	 ++count;
 	}
 	blockcount.innerHTML = count;
-	}									
-);
+};
 blocktext.innerHTML = 'How do you like this article?';
