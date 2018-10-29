@@ -24,8 +24,7 @@
     background-image: url(emojis/grinning-face_1f600.png);
 }
 .blockbutton {
-    height: 50px;
-    width: 50px;
+    border-radius: 25px;
 }
 .blockcount {
 }
