@@ -1,5 +1,5 @@
-var block = document.querySelector('.reactions');
-/*var blocktext = document.createElement('div');
+/*var block = document.querySelector('.reactions');
+var blocktext = document.createElement('div');
 var blockemoji = document.createElement('div');
 var blockbutton = document.createElement('div');
 var button = document.createElement('div');
@@ -22,65 +22,84 @@ blocktext.innerHTML = 'How do you like this article?';
 var count = 0;
 
 blockbutton.addEventListener('click', countReactions );*/
-class Reactions {
+/*class Reactions {
  constructor(settings) {
   this.title = settings.title;
   this.wrapper = document.querySelector(settings.wrapperClass);
-  this.appendToWrapper(); 
+  this.appendToWrapper();
  }
 
  setTitle() {
   let title = document.createElement('div');
   title.innerHTML = this.title;
-  title.classList.add('blocktext');
+  title.classList.add('reactions__text');
   return title;
  }
 
  createReaction() {
   let div = document.createElement('div');
-  div.classList.add('button');
+  div.classList.add('reactions__button');
   return div;
  }
 
  appendToWrapper() {
   let reaction = this.createReaction();
   let title = this.setTitle();
-  console.log(title);
   this.wrapper.appendChild(title);
   this.wrapper.appendChild(reaction);
  }
 }
 
-let reaction = new Reactions({title : "Как вам статья?", wrapperClass : ".block"});
+let reaction = new Reactions({title : "Как вам статья?", wrapperClass : ".reactions"});*/
 
-/*
+
+
 class Reactions {
- constructor(name,cssclass, first, second) {
-  this.name = name;
-  this.cssclass = cssclass;
-  this.first = first;
-  this.second = second;
-  this.createReaction(name, cssclass, first, second);
- }
+ 	constructor(name, cssClass, inner) {
+	 	this.cssClass = cssClass;
+	 	this.inner = inner;
+	 	//console.log(this.name);
+	 	this.createReaction(this.name, this.cssClass, this.inner);
+ 	}
 
- createReaction(name, cssclass, first, second) {
-  this.name = document.createElement('div');
-  this.name.classList.add(this.cssclass);
-  if (this.first != false) {
-  	this.name.appendChild(this.first);
-  }
-  if (this.second != false) {
-  	this.name.appendChild(this.second);
-  }
-  console.log(this.name);
- }
+ 	createReaction(name, cssClass, inner) {
+		this.name = document.createElement('div');
+		this.name.classList.add(this.cssClass);
+		document.body.appendChild(this.name);
+		if (this.inner != false){
+ 			this.inner = document.querySelector(this.inner);
+			this.appendReaction(this.name, this.inner);
+		}
+	 	//console.log(this.name, this.inner);
+	}
+ 	
+ 	appendReaction(name,inner){
+	 	this.name = document.querySelector('.' + this.cssClass);
+	 	this.inner = document.querySelector('.' + this.cssClass);
+	 	console.log(this.name, this.inner);
+ 	}
 }
 
-var button = new Reactions('button', 'reactions__button', false, false);
-var blockbutton = new Reactions('blockbutton', 'reactions__button-wrapper', button, false);
+var blockemoji = new Reactions ('blockemoji','reactions__emoji', false);
+var block = new Reactions ('block', 'reactions', 'reactions__emoji');
+/*var blocktext = new Reactions ('blocktext', 'reactions__text');
 
+class Reaction {
+	constructor(name, inner){
+		this.name = name;
+		this.inner = inner;
+		console.log(this.name, this.inner);
+		this.appendInner(this.name, this.inner);
+	}
+	appendInner(name, inner){
+		console.log(typeof this.name, this.inner);
+		document.getElementByClassName(this.name).appendChild(this.inner);
+	}
+}
 
-function countReactions(){
+var inn1 = new Reaction ('block', 'blocktext');
+var inn2 = new Reaction (block, blockemoji);*/
+/*function countReactions(){
 	if (blockbutton.classList.contains('reactions__elem--active')) {
  	blockbutton.classList.remove('reactions__elem--active'); 
 	 --count;
