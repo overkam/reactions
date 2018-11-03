@@ -106,7 +106,7 @@ var inn2 = new Reaction (block, blockemoji);*/
 	} else {	
 	 blockbutton.classList.add('reactions__elem--active'); 
 	 ++count;
-	}
+	} 
 	blockcount.innerHTML = count;
 };
 
