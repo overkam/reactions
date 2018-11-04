@@ -49,9 +49,9 @@ class Reactions {
  }
 
  createReaction(item) {
-  this.item = document.createElement('div');
-  this.item.classList.add('.' + this.item);
+  let div = document.createElement('div');
   console.log(this.item);
+  div.classList.add('.' + this.item);
   return div;
  }
 
@@ -62,12 +62,12 @@ class Reactions {
  }
 
  appendToWrapper() {
-  //let reaction = this.createReaction('reactions');
+  var reaction = this.createReaction('reactions');
   let title = this.setTitle();
   var arr = ['reactions__emoji','reactions__button','reactions__count'];
-  arr.forEach(function(item, i, arr){
-  	let block = this.createReaction(item);
-  	console.log(item);
+  arr.forEach(function(item){
+  	let block = reaction.createReaction(item);
+  	console.log(block);
   })
   this.wrapper.appendChild(title);
   this.wrapper.appendChild(reaction);
