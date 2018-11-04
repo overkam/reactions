@@ -17,22 +17,7 @@ blockemoji.appendChild(blockbutton);
 blockemoji.appendChild(blockcount);
 blockbutton.appendChild(button);
 
-blocktext.innerHTML = 'How do you like this article?';
-
-var count = 0;
-
-blockbutton.addEventListener('click', countReactions );*/
-
-/*function countReactions(){
-	if (blockbutton.classList.contains('reactions__elem--active')) {
- 	blockbutton.classList.remove('reactions__elem--active'); 
-	 --count;
-	} else {	
-	 blockbutton.classList.add('reactions__elem--active'); 
-	 ++count;
-	} 
-	blockcount.innerHTML = count;
-};*/
+blocktext.innerHTML = 'How do you like this article?';*/
 
 class Reactions {
  constructor(settings) {
@@ -50,8 +35,7 @@ class Reactions {
 
  createReaction(item) {
   let div = document.createElement('div');
-  console.log(this.item);
-  div.classList.add('.' + this.item);
+  div.classList.add(item);
   return div;
  }
 
@@ -61,17 +45,46 @@ class Reactions {
  	return div;
  }
 
+
  appendToWrapper() {
-  var reaction = this.createReaction('reactions');
   let title = this.setTitle();
-  var arr = ['reactions__emoji','reactions__button','reactions__count'];
-  arr.forEach(function(item){
-  	let block = reaction.createReaction(item);
-  	console.log(block);
-  })
+  console.log(title);
   this.wrapper.appendChild(title);
-  this.wrapper.appendChild(reaction);
+  var arr = ['reactions__emoji','reactions__button','reactions__count','reactions__button-wrapper'];
+	 arr.forEach((item)=>{
+	   	let block = this.createReaction(item);
+	   	this.wrapper.appendChild(block);
+	  });
+	var arr2 = ['reactions__button-wrapper','reactions__button','reactions__count']
+		arr2.forEach((item)=>{
+			let blockemoji = document.querySelector('.reactions__emoji');
+	  	console.log(blockemoji);
+			let append = document.querySelector('.' + item);
+			console.log(append);
+  		blockemoji.appendChild(append);
+  	});
+ 	let reactions__buttonWrapper = document.querySelector('.reactions__button-wrapper');
+ 	let reactions__button = document.querySelector('.reactions__button');
+ 	reactions__buttonWrapper.appendChild(reactions__button);
  }
+ 
+
 }
 
 let reaction = new Reactions({title : "Как вам статья?", wrapperClass : ".reactions"});
+var count = 0;
+
+var blockbutton = document.querySelector('.reactions__button-wrapper');
+var blockcount = document.querySelector('.reactions__count');
+blockbutton.addEventListener('click', countReactions );
+
+function countReactions(){
+	if (blockbutton.classList.contains('reactions__elem--active')) {
+ 	blockbutton.classList.remove('reactions__elem--active'); 
+	 --count;
+	} else {	
+	 blockbutton.classList.add('reactions__elem--active'); 
+	 ++count;
+	} 
+	blockcount.innerHTML = count;
+};
