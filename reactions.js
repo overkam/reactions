@@ -54,26 +54,30 @@ class Reactions {
  	let reactionsButtonWrapper = document.getElementsByClassName(CSS.wrapperClass)[0];
  	let reactionsButton = document.getElementsByClassName(CSS.buttonClass)[0];
  	reactionsButtonWrapper.appendChild(reactionsButton);
+ 	this.transfer();
 }
 
-this.count = 0;
+transfer(){
+
+var count = 0;
 
 let blockbutton = document.getElementsByClassName(CSS.wrapperClass)[0];
 let blockcount = document.getElementsByClassName(CSS.countClass)[0];
+console.log(blockbutton);
 
-blockbutton.addEventListener('click', countReactions() );
+blockbutton.addEventListener('click', this.countReactions(blockbutton,blockcount) );
+};
 
-console.log(CSS.activeButtonClass);
-
-countReactions(){
-	if (blockbutton.classList.contains(CSS.activeButtonClass)) {
- 	blockbutton.classList.remove(CSS.activeButtonClass); 
+countReactions(blockbutton,blockcount){
+console.log(this.blockbutton);
+	if (this.blockbutton.classList.contains(CSS.activeButtonClass)) {
+ 	this.blockbutton.classList.remove(CSS.activeButtonClass); 
 	 --count;
 	} else {	
-	 blockbutton.classList.add(CSS.activeButtonClass); 	
+	this.blockbutton.classList.add(CSS.activeButtonClass); 	
 	 ++count;
 	} 
-	blockcount.innerHTML = count;
+	this.blockcount.innerHTML = count;
 };
 }
 
