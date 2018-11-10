@@ -12,6 +12,9 @@ class Reactions {
   this.title = settings.title;
   this.wrapper = document.getElementsByClassName(settings.wrapperBlockClass)[0];
   this.appendToWrapper();
+  this.blockbutton = null;
+  this.blockcount = null;
+  this.count = 0;
  }
 
  setTitle() {
@@ -32,8 +35,6 @@ class Reactions {
  	div.classList.add(CSS.emojiClass);
  	return div;
  }
-
-
 
  appendToWrapper() {
   let title = this.setTitle();
@@ -59,25 +60,23 @@ class Reactions {
 
 transfer(){
 
-var count = 0;
-
 let blockbutton = document.getElementsByClassName(CSS.wrapperClass)[0];
 let blockcount = document.getElementsByClassName(CSS.countClass)[0];
-console.log(blockbutton);
 
-blockbutton.addEventListener('click', this.countReactions(blockbutton,blockcount) );
+blockbutton.addEventListener('click', () => 
+	{this.countReactions(blockbutton,blockcount)});
 };
 
 countReactions(blockbutton,blockcount){
-console.log(this.blockbutton);
-	if (this.blockbutton.classList.contains(CSS.activeButtonClass)) {
- 	this.blockbutton.classList.remove(CSS.activeButtonClass); 
-	 --count;
+	if (blockbutton.classList.contains(CSS.activeButtonClass)) {
+ 	blockbutton.classList.remove(CSS.activeButtonClass); 
+	 --this.count;
 	} else {	
-	this.blockbutton.classList.add(CSS.activeButtonClass); 	
-	 ++count;
+	blockbutton.classList.add(CSS.activeButtonClass); 	
+	 ++this.count;
 	} 
-	this.blockcount.innerHTML = count;
+	console.log(this.count,blockcount);
+	blockcount.innerHTML = this.count;
 };
 }
 
