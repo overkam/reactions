@@ -11,7 +11,7 @@ class Reactions {
  constructor(settings) {
   this.title = settings.title;
   this.wrapper = document.getElementsByClassName(settings.wrapperBlockClass)[0];
-  this.appendToWrapper();
+  this.appendToBlock();
   this.blockbutton = null;
   this.blockcount = null;
   this.count = 0;
@@ -36,7 +36,7 @@ class Reactions {
  	return div;
  }
 
- appendToWrapper() {
+ appendToBlock() {
   let title = this.setTitle();
   this.wrapper.appendChild(title);
   var arr = [CSS.emojiClass,CSS.buttonClass,CSS.countClass,CSS.wrapperClass];
@@ -44,13 +44,16 @@ class Reactions {
 	  let block = this.createReaction(item);
 		this.wrapper.appendChild(block);
 	});
+	this.appendToEmojiBlock()
+}
+ 
+ appendToEmojiBlock(){
 	var arr2 = [CSS.wrapperClass,CSS.buttonClass,CSS.countClass]
 	arr2.forEach((item) => {
 		let blockemoji = document.getElementsByClassName(CSS.emojiClass)[0];
 		let inner = document.getElementsByClassName(item)[0];
 		blockemoji.appendChild(inner);
 	});
-
 
  	let reactionsButtonWrapper = document.getElementsByClassName(CSS.wrapperClass)[0];
  	let reactionsButton = document.getElementsByClassName(CSS.buttonClass)[0];
