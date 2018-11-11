@@ -71,7 +71,7 @@ class Reactions {
  	this.transfer();
 }
 
-/** Counting clciks */
+/** Counting clciks */ 
 
 transfer(){
 
