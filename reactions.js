@@ -17,6 +17,8 @@ class Reactions {
   this.count = 0;
  }
 
+/** Create a text block */
+
  setTitle() {
   let title = document.createElement('div');
   title.innerHTML = this.title;
@@ -24,17 +26,23 @@ class Reactions {
   return title;
  }
 
+/** Create a general block */
+
  createReaction(item) {
   let div = document.createElement('div');
   div.classList.add(item);
   return div;
  }
 
+/** Create inner blocks */
+
  wrapButton(){
  	let div = document.createElement('div');
  	div.classList.add(CSS.emojiClass);
  	return div;
  }
+
+/** Append block to general block*/
 
  appendToBlock() {
   let title = this.setTitle();
@@ -46,6 +54,8 @@ class Reactions {
 	});
 	this.appendToEmojiBlock()
 }
+
+/** Append bloks to emji blocks */
  
  appendToEmojiBlock(){
 	var arr2 = [CSS.wrapperClass,CSS.buttonClass,CSS.countClass]
@@ -60,6 +70,8 @@ class Reactions {
  	reactionsButtonWrapper.appendChild(reactionsButton);
  	this.transfer();
 }
+
+/** Counting clciks */
 
 transfer(){
 
