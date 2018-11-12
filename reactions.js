@@ -98,6 +98,11 @@ blockbutton.addEventListener('click', () =>
 	{this.countReactions(blockbutton,blockcount)});
 };
 
+/**
+ * Increase or decrease counter after click
+ * @param {HTMLElement} blockbutton
+ * @param {HTMLElement} blockcount
+ */
 countReactions(blockbutton,blockcount){
  if (blockbutton.classList.contains(CSS.activeButtonClass)) {
  blockbutton.classList.remove(CSS.activeButtonClass); 
