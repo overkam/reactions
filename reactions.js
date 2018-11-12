@@ -10,6 +10,9 @@ const CSS = {
 	activeButtonClass : 'reactions__elem--active'
 };
 
+/**
+*Creating and collecting blocks
+*/
 class Reactions {
  constructor(settings) {
   this.title = settings.title;
@@ -20,8 +23,10 @@ class Reactions {
   this.count = 0;
  }
 
-/** Create a text block */
-
+/** 
+*Create a text block 
+*@returns {Object[]} block
+*/
  setTitle() {
   let title = document.createElement('div');
   title.innerHTML = this.title;
@@ -29,37 +34,44 @@ class Reactions {
   return title;
  }
 
-/** Create a general block */
-
+/** 
+*Create a general block 
+*@param {item} item - CSS class for block
+*@returns {Object[]} block
+*/
  createReaction(item) {
   let div = document.createElement('div');
   div.classList.add(item);
   return div;
  }
 
-/** Create inner blocks */
-
+/** 
+*Create inner blocks
+**@returns {Object[]} block
+*/
  wrapButton(){
- 	let div = document.createElement('div');
- 	div.classList.add(CSS.emojiClass);
- 	return div;
+	let div = document.createElement('div');
+	div.classList.add(CSS.emojiClass);
+	return div;
  }
 
-/** Append block to general block*/
-
- appendToBlock() {
-  let title = this.setTitle();
-  this.wrapper.appendChild(title);
-  var arr = [CSS.emojiClass,CSS.buttonClass,CSS.countClass,CSS.wrapperClass];
+/** 
+*Append block to general block
+*/
+appendToBlock() {
+	let title = this.setTitle();
+	this.wrapper.appendChild(title);
+	var arr = [CSS.emojiClass,CSS.buttonClass,CSS.countClass,CSS.wrapperClass];
 	arr.forEach((item) => {
-	  let block = this.createReaction(item);
+		let block = this.createReaction(item);
 		this.wrapper.appendChild(block);
 	});
 	this.appendToEmojiBlock()
 }
 
-/** Append bloks to emji blocks */
- 
+/** 
+*Append bloks to emji blocks 
+*/ 
  appendToEmojiBlock(){
 	var arr2 = [CSS.wrapperClass,CSS.buttonClass,CSS.countClass]
 	arr2.forEach((item) => {
@@ -68,14 +80,15 @@ class Reactions {
 		blockemoji.appendChild(inner);
 	});
 
- 	let reactionsButtonWrapper = document.getElementsByClassName(CSS.wrapperClass)[0];
- 	let reactionsButton = document.getElementsByClassName(CSS.buttonClass)[0];
- 	reactionsButtonWrapper.appendChild(reactionsButton);
- 	this.transfer();
+	let reactionsButtonWrapper = document.getElementsByClassName(CSS.wrapperClass)[0];
+	let reactionsButton = document.getElementsByClassName(CSS.buttonClass)[0];
+	reactionsButtonWrapper.appendChild(reactionsButton);
+	this.transfer();
 }
 
-/** Counting clciks */ 
-
+/** 
+*Counting clciks
+*/ 
 transfer(){
 
 let blockbutton = document.getElementsByClassName(CSS.wrapperClass)[0];
@@ -87,11 +100,11 @@ blockbutton.addEventListener('click', () =>
 
 countReactions(blockbutton,blockcount){
 	if (blockbutton.classList.contains(CSS.activeButtonClass)) {
- 	blockbutton.classList.remove(CSS.activeButtonClass); 
-	 --this.count;
+	blockbutton.classList.remove(CSS.activeButtonClass); 
+		--this.count;
 	} else {	
 	blockbutton.classList.add(CSS.activeButtonClass); 	
-	 ++this.count;
+		++this.count;
 	} 
 	console.log(this.count,blockcount);
 	blockcount.innerHTML = this.count;
