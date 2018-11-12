@@ -47,7 +47,7 @@ class Reactions {
 
 /** 
  *Create inner blocks
- **@returns {HTMLElement} div
+ *@returns {HTMLElement} div
  */
  wrapButton(){
 	let div = document.createElement('div');
@@ -99,15 +99,15 @@ blockbutton.addEventListener('click', () =>
 };
 
 countReactions(blockbutton,blockcount){
-	if (blockbutton.classList.contains(CSS.activeButtonClass)) {
-	blockbutton.classList.remove(CSS.activeButtonClass); 
-		--this.count;
-	} else {	
-	blockbutton.classList.add(CSS.activeButtonClass); 	
-		++this.count;
-	} 
-	console.log(this.count,blockcount);
-	blockcount.innerHTML = this.count;
+ if (blockbutton.classList.contains(CSS.activeButtonClass)) {
+ blockbutton.classList.remove(CSS.activeButtonClass); 
+  --this.count;
+ } else {	
+ blockbutton.classList.add(CSS.activeButtonClass); 	
+  ++this.count;
+ } 
+ console.log(this.count,blockcount);
+ blockcount.innerHTML = this.count;
 };
 }
 
