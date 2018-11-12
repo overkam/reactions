@@ -1,6 +1,6 @@
 /**
-*CSS classes of elements in class Reactions
-*/
+ *CSS classes of elements in class Reactions
+ */
 const CSS = {
 	titleClass : 'reactions__text',
 	emojiClass : 'reactions__emoji',
@@ -11,8 +11,8 @@ const CSS = {
 };
 
 /**
-*Creating and collecting blocks
-*/
+ *Creating blocks, adding emoji, text and buttons to general block
+ */
 class Reactions {
  constructor(settings) {
   this.title = settings.title;
@@ -24,9 +24,9 @@ class Reactions {
  }
 
 /** 
-*Create a text block 
-*@returns {Object[]} block
-*/
+ *Create a text block and append to general block 
+ *@returns {HTMLElement} title
+ */
  setTitle() {
   let title = document.createElement('div');
   title.innerHTML = this.title;
@@ -35,10 +35,10 @@ class Reactions {
  }
 
 /** 
-*Create a general block 
-*@param {item} item - CSS class for block
-*@returns {Object[]} block
-*/
+ *Create a general block 
+ *@param {item} item - CSS class for block
+ *@returns {HTMLElement} div
+ */
  createReaction(item) {
   let div = document.createElement('div');
   div.classList.add(item);
@@ -46,9 +46,9 @@ class Reactions {
  }
 
 /** 
-*Create inner blocks
-**@returns {Object[]} block
-*/
+ *Create inner blocks
+ **@returns {HTMLElement} div
+ */
  wrapButton(){
 	let div = document.createElement('div');
 	div.classList.add(CSS.emojiClass);
@@ -56,8 +56,8 @@ class Reactions {
  }
 
 /** 
-*Append block to general block
-*/
+ *Append emojiblock, buttnos and counter to general block
+ */
 appendToBlock() {
 	let title = this.setTitle();
 	this.wrapper.appendChild(title);
@@ -70,8 +70,8 @@ appendToBlock() {
 }
 
 /** 
-*Append bloks to emji blocks 
-*/ 
+ *Append emoji and counter to emojiblock 
+ */ 
  appendToEmojiBlock(){
 	var arr2 = [CSS.wrapperClass,CSS.buttonClass,CSS.countClass]
 	arr2.forEach((item) => {
@@ -87,8 +87,8 @@ appendToBlock() {
 }
 
 /** 
-*Counting clciks
-*/ 
+ *Counting clicks to emoji
+ */ 
 transfer(){
 
 let blockbutton = document.getElementsByClassName(CSS.wrapperClass)[0];
