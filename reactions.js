@@ -1,3 +1,6 @@
+/**
+*CSS classes of elements in class Reactions
+*/
 const CSS = {
 	titleClass : 'reactions__text',
 	emojiClass : 'reactions__emoji',
