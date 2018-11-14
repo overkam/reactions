@@ -28,6 +28,7 @@ class Reactions {
       title: null,
       emojiBlock: null,
       button: null,
+      buttonWrapper: null,
       buttons: [],
     }
   }
@@ -40,21 +41,11 @@ class Reactions {
       titleClass : 'reactions__text',
       emojiClass : 'reactions__emoji',
       buttonClass : 'reactions__button',
-      wrapperClass : 'reactions__button-wrapper',
-      countClass : 'reactions__count',
+      buttonWrapperClass : 'reactions__button-wrapper',
+      countClicksClass : 'reactions__count',
       activeButtonClass : 'reactions__elem--active'
     }
   }
-
- /** 
- * Create a text block and append to general block 
- * @returns {HTMLElement} title
- *//**
-  setTitle() {
-    let title = document.createElement('div');
-    title.classList.add(Reactions.CSS.titleClass);
-    return title;
-  }*/
 
 /** 
  * Create a general block 
@@ -62,6 +53,7 @@ class Reactions {
  * @returns {HTMLElement} div
  */
  make(tagName, className) {
+  console.log(tagName, className);
   let div = document.createElement(tagName);
 
   div.classList.add(className);
@@ -70,40 +62,15 @@ class Reactions {
  }
 
 /** 
- * Create inner blocks
- * @returns {HTMLElement} div
- *//**
- wrapButton(){
-  let div = document.createElement('div');
-  div.classList.add(Reactions.CSS.emojiClass);
-  return div;
- }*/
-
-/** 
  * Append emojiblock, buttons and counter to general block
  */
 appendToBlock() {
-  /**let title = this.setTitle();
-
-  this.wrapper.appendChild(title);*/
-
-  /**
-   * Elemets which appends into general block
-   * @type {string[]}
-   
-  var elementsIntoBlock = [
-    Reactions.CSS.titleClass, 
-    Reactions.CSS.emojiClass, 
-    Reactions.CSS.buttonClass, 
-    Reactions.CSS.countClass, 
-    Reactions.CSS.wrapperClass
-  ];*/
-
   /**
    * Append title
    */
   this.nodes.title = this.make('div', Reactions.CSS.titleClass);
   this.nodes.wrapper.appendChild(this.nodes.title);
+  console.log(this.nodes.title);
 
   /**
    * Append emoji wrapper
@@ -119,11 +86,21 @@ appendToBlock() {
   this.nodes.button = this.make('div', Reactions.CSS.buttonClass);
   this.nodes.wrapper.appendChild(this.nodes.button);
 
-  elementsIntoBlock.forEach((CSSClass) => {
-    let block = this.createReaction(CSSClass);
-    this.wrapper.appendChild(block);
-  });
-  //this.title.innerHTML = this.title;
+  /**
+   * Append wrapper for button
+   * @type {HTMLElement} buttonWrapper
+   */
+  this.nodes.buttonWrapper = this.make('div', Reactions.CSS.buttonWrapperClass);
+  this.nodes.wrapper.appendChild(this.nodes.buttonWrapper);
+
+  /**
+   * Append clicks counter
+   * @type {HTMLElement} countClicks
+   */
+  this.nodes.countClicks = this.make('div', Reactions.CSS.countClicksClass);
+  this.nodes.wrapper.appendChild(this.nodes.countClicks);
+
+
 	this.appendToEmojiBlock()
 }
 
@@ -131,45 +108,30 @@ appendToBlock() {
  * Append emoji and counter to emojiBlock 
  */ 
  appendToEmojiBlock(){
-  /**
-   * Elements which appends into emojiBlock
-   * @type {Array}
-   */
-	var elementsIntoEmojiBlock = [
-    Reactions.CSS.wrapperClass, 
-    Reactions.CSS.buttonClass, 
-    Reactions.CSS.countClass
-  ];
-
-	elementsIntoEmojiBlock.forEach((CSSClass) => {
-		let blockemoji = document.getElementsByClassName(Reactions.CSS.emojiClass)[0];
-		let inner = document.querySelector('.' + CSSClass);
-		blockemoji.appendChild(inner);
-	});
 
   /**
-   * [reactionsButtonWrapper description]
-   * @type {[type]}
+   * Append button wrapper to emojiBlock
    */
-	let reactionsButtonWrapper = document.getElementsByClassName(Reactions.CSS.wrapperClass)[0];
-	let reactionsButton = document.getElementsByClassName(Reactions.CSS.buttonClass)[0];
-	reactionsButtonWrapper.appendChild(reactionsButton);
-	
+  this.nodes.emojiBlock.appendChild(this.nodes.buttonWrapper);
+
   /**
-   * 
+   * Append button to emojiBlock
    */
-  this.transfer();
-}
+  this.nodes.emojiBlock.appendChild(this.nodes.button);
 
-/** 
- * Counting clicks to emoji
- */ 
-transfer(){
-	let blockButton = document.getElementsByClassName(Reactions.CSS.wrapperClass)[0];
-  let blockCount = document.getElementsByClassName(Reactions.CSS.countClass)[0];
+  /**
+   * Append clicks counter to emojiBlock
+   */
+  this.nodes.emojiBlock.appendChild(this.nodes.countClicks);
 
-	blockButton.addEventListener('click', () => {
-		this.countClicksToButton(blockButton,blockCount);
+  /**
+   * Append button to button wrapper
+   */
+  this.nodes.buttonWrapper.appendChild(this.nodes.button);
+
+
+	this.nodes.buttonWrapper.addEventListener('click', () => {
+		this.countClicksToButton(this.nodes.buttonWrapper, this.nodes.countClicks);
   });
 };
 
@@ -178,15 +140,15 @@ transfer(){
  * @param {HTMLElement} blockButton
  * @param {HTMLElement} blockCount
  */
-countClicksToButton(blockButton,blockCount){
- if (blockButton.classList.contains(Reactions.CSS.activeButtonClass)) {
- blockButton.classList.remove(Reactions.CSS.activeButtonClass); 
+countClicksToButton(buttonWrapper, countClicks){
+ if (buttonWrapper.classList.contains(Reactions.CSS.activeButtonClass)) {
+ buttonWrapper.classList.remove(Reactions.CSS.activeButtonClass); 
   --this.count;
  } else {	
- blockButton.classList.add(Reactions.CSS.activeButtonClass); 	
+ buttonWrapper.classList.add(Reactions.CSS.activeButtonClass); 	
   ++this.count;
  }
- blockCount.innerHTML = this.count;
+ countClicks.innerHTML = this.count;
 };
 }
 
