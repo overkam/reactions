@@ -16,13 +16,6 @@ class Reactions {
    * @return {void}
    */
   constructor(settings) {
-    this.title = settings.title;
-    // this.wrapper = 
-    this.appendToBlock();
-    this.blockButton = null;
-    this.blockCount = null;
-    this.count = 0;
-
     this.nodes = {
       wrapper: document.querySelector(settings.wrapperBlockSelector),
       title: null,
@@ -31,6 +24,10 @@ class Reactions {
       buttonWrapper: null,
       buttons: [],
     }
+
+    this.title = settings.title;
+    this.appendElementsToWrapper();
+    this.count = 0;
   }
 
   /**
@@ -64,12 +61,13 @@ class Reactions {
 /** 
  * Append emojiblock, buttons and counter to general block
  */
-appendToBlock() {
+appendElementsToWrapper() {
   /**
    * Append title
    */
   this.nodes.title = this.make('div', Reactions.CSS.titleClass);
   this.nodes.wrapper.appendChild(this.nodes.title);
+  this.nodes.title.innerText = this.title;
   console.log(this.nodes.title);
 
   /**
@@ -101,13 +99,13 @@ appendToBlock() {
   this.nodes.wrapper.appendChild(this.nodes.countClicks);
 
 
-	this.appendToEmojiBlock()
+	this.appendElementsToEmojiBlock()
 }
 
 /** 
  * Append emoji and counter to emojiBlock 
  */ 
- appendToEmojiBlock(){
+ appendElementsToEmojiBlock(){
 
   /**
    * Append button wrapper to emojiBlock
@@ -129,25 +127,46 @@ appendToBlock() {
    */
   this.nodes.buttonWrapper.appendChild(this.nodes.button);
 
-
-	this.nodes.buttonWrapper.addEventListener('click', () => {
+  /**
+   * Transfer to counting clicks
+   * @param  {HTMLElement} 'click' add CSS class, count clicks
+   * @return {void}
+   */
+	this.nodes.button.addEventListener('click', () => {
 		this.countClicksToButton(this.nodes.buttonWrapper, this.nodes.countClicks);
   });
 };
 
 /**
  * Increase or decrease counter after click
- * @param {HTMLElement} blockButton
- * @param {HTMLElement} blockCount
+ * @param {HTMLElement} buttonWrapper
+ * @param {HTMLElement} count of clicks
  */
 countClicksToButton(buttonWrapper, countClicks){
  if (buttonWrapper.classList.contains(Reactions.CSS.activeButtonClass)) {
- buttonWrapper.classList.remove(Reactions.CSS.activeButtonClass); 
-  --this.count;
- } else {	
- buttonWrapper.classList.add(Reactions.CSS.activeButtonClass); 	
-  ++this.count;
- }
+
+   /**
+    * Remove CSS class if button is active
+    */
+   buttonWrapper.classList.remove(Reactions.CSS.activeButtonClass); 
+
+    /**
+     * Decrease clicks count
+     */
+    --this.count;
+   } else {	
+
+   /**
+    * Add CSS class if button is not active
+    */
+   buttonWrapper.classList.add(Reactions.CSS.activeButtonClass); 	
+
+    /**
+     * Increase clicks count
+     */
+    ++this.count;
+   }
+   
  countClicks.innerHTML = this.count;
 };
 }
