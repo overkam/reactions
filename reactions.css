@@ -9,7 +9,8 @@
     width: 25px;
     background-size: cover;
     margin: 5px;
-    background-image: url(emojis/grinning-face_1f600.png);
+    content: url(\1F914);
+    background-image: url(\1F914 /* emojis/grinning-face_1f600.png */);
 }
 .reactions__elem--active{
     border-radius: 30px;
