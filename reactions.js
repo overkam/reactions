@@ -20,9 +20,9 @@ class Reactions {
     wrapper: document.querySelector(settings.wrapperBlockSelector),
     title: settings.title,
     emojiBlock: null,
-    button: null,
     buttonWrapper: null,
-    buttons: [],
+    button: null,
+    buttons: [0x1F600, 0x1F604],
   }
 
   this.titleText = settings.title;
@@ -123,6 +123,7 @@ class Reactions {
     * Append button to button wrapper
     */
     this.nodes.buttonWrapper.appendChild(this.nodes.button);
+    this.nodes.button.innerText = String.fromCodePoint(this.nodes.buttons[0]);
 
     /**
     * Transfer to counting clicks

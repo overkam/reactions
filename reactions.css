@@ -6,11 +6,11 @@
 }
 .reactions__button {
     height: 25px;
-    width: 25px;
-    background-size: cover;
+    width: 25px; 
     margin: 5px;
-    content: url(\1F914);
-    background-image: url(\1F914 /* emojis/grinning-face_1f600.png */);
+    font-size: 18px;
+    text-align: center;
+    margin-left: 5.5px;
 }
 .reactions__elem--active{
     border-radius: 30px;
@@ -32,3 +32,4 @@
     display: flex;
     align-items: center;
 }
+
