@@ -22,6 +22,7 @@ class Reactions {
     emojiBlock: null,
     buttonWrapper: null,
     button: null,
+    button2: null,
     buttons: [0x1F600, 0x1F604],
   }
 
@@ -123,14 +124,14 @@ class Reactions {
     * Append button to button wrapper
     */
     this.nodes.buttonWrapper.appendChild(this.nodes.button);
-    this.nodes.button.innerText = String.fromCodePoint(this.nodes.buttons[0]);
+    this.nodes.button.innerText = String.fromCodePoint(this.nodes.buttons[1]);
 
     /**
     * Transfer to counting clicks
     * @param  {HTMLElement} 'click' add CSS class, count clicks
     * @return {void}
     */
-    this.nodes.button.addEventListener('click', () => {
+    this.nodes.buttonWrapper.addEventListener('click', () => {
       this.countClicksToButton(this.nodes.buttonWrapper, this.nodes.countClicks);
     });
   };
