@@ -22,8 +22,7 @@ class Reactions {
     emojiBlock: null,
     buttonWrapper: null,
     button: null,
-    button2: null,
-    buttons: [0x1F600, 0x1F604],
+    unicode: settings.unicode,
   }
 
   this.titleText = settings.title;
@@ -80,16 +79,19 @@ class Reactions {
     * Append button
     * @type {HTMLElement} button
     */
-    this.nodes.button = this.make('div', Reactions.CSS.buttonClass);
-    this.nodes.wrapper.appendChild(this.nodes.button);
-
+    for (let i = 0; i < 3; i++){
+      this.nodes.button[i] = this.make('div', Reactions.CSS.buttonClass);
+      this.nodes.wrapper.appendChild(this.nodes.button[i]);
+    }
     /**
     * Append wrapper for button
     * @type {HTMLElement} buttonWrapper
     */
-    this.nodes.buttonWrapper = this.make('div', Reactions.CSS.buttonWrapperClass);
-    this.nodes.wrapper.appendChild(this.nodes.buttonWrapper);
-
+    for (let i = 0; i < 3; i++){
+      this.nodes.buttonWrapper[i] = this.make('div', Reactions.CSS.buttonWrapperClass);
+      this.nodes.wrapper.appendChild(this.nodes.buttonWrapper[i]);
+      this.nodes.button.innerText = String.fromCodePolet(this.nodes.unicode[i]);
+    }
     /**
     * Append clicks counter
     * @type {HTMLElement} countClicks
@@ -108,13 +110,15 @@ class Reactions {
   /**
     * Append button wrapper to emojiBlock
     */
+   for (let i = 0; i < 3; i++){
     this.nodes.emojiBlock.appendChild(this.nodes.buttonWrapper);
-
+    }
     /**
     * Append button to emojiBlock
     */
-    this.nodes.emojiBlock.appendChild(this.nodes.button);
-
+    for (let i = 0; i < 3; i++){
+    this.nodes.emojiBlock.appendChild(this.nodes.button[i]);
+    }
     /**
     * Append clicks counter to emojiBlock
     */
@@ -124,7 +128,7 @@ class Reactions {
     * Append button to button wrapper
     */
     this.nodes.buttonWrapper.appendChild(this.nodes.button);
-    this.nodes.button.innerText = String.fromCodePoint(this.nodes.buttons[1]);
+    
 
     /**
     * Transfer to counting clicks
@@ -168,5 +172,6 @@ class Reactions {
 
   countClicks.innerHTML = this.count;
   };
+  
 }
 
