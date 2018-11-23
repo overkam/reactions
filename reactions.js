@@ -23,11 +23,12 @@ class Reactions {
     buttonWrapper: [],
     button: [],
     unicode: [],
-    countClicks: []
+    countBlock: []
   }
   this.nodes.unicode = settings.code;
   this.titleText = settings.title;
   this.appendElementsToWrapper();
+  this.count=0;
   }
 
   /**
@@ -92,10 +93,10 @@ class Reactions {
       
       /**
       * Append clicks counter
-      * @type {HTMLElement} countClicks
+      * @type {HTMLElement} countBlock
       */
-      this.nodes.countClicks[i] = this.make('div', Reactions.CSS.countClicksClass);
-      this.nodes.wrapper.appendChild(this.nodes.countClicks[i]);
+      this.nodes.countBlock[i] = this.make('div', Reactions.CSS.countClicksClass);
+      this.nodes.wrapper.appendChild(this.nodes.countBlock[i]);
       }
 
     this.appendElementsToEmojiBlock()
@@ -111,23 +112,12 @@ class Reactions {
     */
    for (let i = 0; i < this.nodes.unicode.length; i++){
     this.nodes.emojiBlock.appendChild(this.nodes.buttonWrapper[i]);
-    /**
-    * Append button to emojiBlock
-    */
-    //for (let i = 0; i < this.nodes.unicode.length; i++){
-    //this.nodes.emojiBlock.appendChild(this.nodes.button[i]);
-    //}
-    /**
-    * Append clicks counter to emojiBlock
-    */
-    //this.nodes.emojiBlock.appendChild(this.nodes.countClicks);
 
-    /**
-    * Append button to button wrapper
-    */
     this.nodes.buttonWrapper[i].appendChild(this.nodes.button[i]);
+
     this.nodes.button[i].innerText = String.fromCodePoint(this.nodes.unicode[i]);
-    this.nodes.emojiBlock.appendChild(this.nodes.countClicks[i]);
+
+    this.nodes.emojiBlock.appendChild(this.nodes.countBlock[i]);
     }
     
 
@@ -137,9 +127,10 @@ class Reactions {
     * @return {void}
     */
    for (let i = 0; i < this.nodes.unicode.length; i++) {
-    this.nodes.buttonWrapper[i].addEventListener('click', () => {
-      this.countClicksToButton(this.nodes.buttonWrapper[i],this.nodes.countClicks[i]);
-    });}
+      this.nodes.buttonWrapper[i].addEventListener('click', () => {
+        this.countClicksToButton(this.nodes.buttonWrapper[i],this.nodes.countBlock[i]);
+      })
+    ;}
   };
 
   /**
@@ -148,18 +139,17 @@ class Reactions {
   * @param {HTMLElement} count of clicks
   */
   countClicksToButton(buttonWrapper,countClicks){
-  let itemActive = document.querySelector('.reactions__elem--active'); 
-  if (itemActive == null){
-    buttonWrapper.classList.add(Reactions.CSS.activeButtonClass);
-
-  }else{
-    if(itemActive == buttonWrapper){
-      buttonWrapper.classList.remove(Reactions.CSS.activeButtonClass);
+    let itemActive = document.querySelector('.reactions__elem--active'); 
+    if (itemActive == null){
+      buttonWrapper.classList.add(Reactions.CSS.activeButtonClass);
     }else{
-    itemActive.classList.remove(Reactions.CSS.activeButtonClass);
-    buttonWrapper.classList.add(Reactions.CSS.activeButtonClass);
-    }
-  }  
+      if(itemActive == buttonWrapper){
+        buttonWrapper.classList.remove(Reactions.CSS.activeButtonClass);
+      }else{
+      itemActive.classList.remove(Reactions.CSS.activeButtonClass);
+      buttonWrapper.classList.add(Reactions.CSS.activeButtonClass);
+      }
+    }  
   };
   
 }
