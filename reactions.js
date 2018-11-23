@@ -20,11 +20,12 @@ class Reactions {
     wrapper: document.querySelector(settings.wrapperBlockSelector),
     title: settings.title,
     emojiBlock: null,
-    buttonWrapper: null,
-    button: null,
-    unicode: settings.unicode,
+    buttonWrapper: [],
+    button: [],
+    unicode: []
   }
-
+  console.log(settings.code);
+  this.nodes.unicode = settings.code;
   this.titleText = settings.title;
   this.appendElementsToWrapper();
   this.count = 0;
@@ -90,7 +91,6 @@ class Reactions {
     for (let i = 0; i < 3; i++){
       this.nodes.buttonWrapper[i] = this.make('div', Reactions.CSS.buttonWrapperClass);
       this.nodes.wrapper.appendChild(this.nodes.buttonWrapper[i]);
-      this.nodes.button.innerText = String.fromCodePolet(this.nodes.unicode[i]);
     }
     /**
     * Append clicks counter
@@ -111,7 +111,7 @@ class Reactions {
     * Append button wrapper to emojiBlock
     */
    for (let i = 0; i < 3; i++){
-    this.nodes.emojiBlock.appendChild(this.nodes.buttonWrapper);
+    this.nodes.emojiBlock.appendChild(this.nodes.buttonWrapper[i]);
     }
     /**
     * Append button to emojiBlock
@@ -127,7 +127,10 @@ class Reactions {
     /**
     * Append button to button wrapper
     */
-    this.nodes.buttonWrapper.appendChild(this.nodes.button);
+    for (let i = 0; i < 3; i++){
+    this.nodes.buttonWrapper[i].appendChild(this.nodes.button[i]);
+    this.nodes.button[i].innerText = String.fromCodePoint(this.nodes.unicode[i]);
+    }
     
 
     /**
@@ -135,9 +138,10 @@ class Reactions {
     * @param  {HTMLElement} 'click' add CSS class, count clicks
     * @return {void}
     */
-    this.nodes.buttonWrapper.addEventListener('click', () => {
-      this.countClicksToButton(this.nodes.buttonWrapper, this.nodes.countClicks);
-    });
+   for (let i = 0; i < 3; i++) {
+    this.nodes.buttonWrapper[i].addEventListener('click', () => {
+      this.countClicksToButton(this.nodes.buttonWrapper[i], this.nodes.countClicks);
+    });}
   };
 
   /**
@@ -146,7 +150,11 @@ class Reactions {
   * @param {HTMLElement} count of clicks
   */
   countClicksToButton(buttonWrapper, countClicks){
-  if (buttonWrapper.classList.contains(Reactions.CSS.activeButtonClass)) {
+  let items = document.querySelectorAll('.reactions__button-wrapper'); 
+  for (let i = 0; i < 3; i++) {
+  if (buttonWrapper.classList.contains(Reactions.CSS.activeButtonClass) 
+    && 
+    items[i].classList.contains(Reactions.CSS.activeButtonClass)) {
 
     /**
     * Remove CSS class if button is active
@@ -156,21 +164,21 @@ class Reactions {
     /**
     * Decrease clicks count
     */
-    --this.count;
+    //--this.count;
   } else {	
 
     /**
     * Add CSS class if button is not active
     */
     buttonWrapper.classList.add(Reactions.CSS.activeButtonClass); 	
-
+    items[i].classList.remove(Reactions.CSS.activeButtonClass);
     /**
     * Increase clicks count
     */
-    ++this.count;
-  }
-
-  countClicks.innerHTML = this.count;
+    //++this.count;
+  };
+  };
+  //countClicks.innerHTML = this.count;
   };
   
 }
