@@ -12,7 +12,7 @@
     text-align: center;
     margin-left: 5.5px;
 }
-.reactions__elem--active{
+.reactions__button--active{
     border-radius: 30px;
     background-color: #fff8b5;
 }
@@ -21,7 +21,6 @@
     border: 1px solid grey;
     margin-left: 30px;    
     cursor: pointer; 
-    position: static;
 }
 .reactions__count {
     padding-left: 7px;
@@ -36,7 +35,6 @@
 }
 .reactions__emoji-wrapper{
     display: flex;
-    position: static;
 }
 .reactions__emoji-wrapper--active{
     display: flex;

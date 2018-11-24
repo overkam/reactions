@@ -1,6 +1,6 @@
 /**
 * @typedef {object} ReactionsConfig
-* @property {string} title  - Label for button
+* @property {string} title  - Text in text area
 * @property {string} wrapperBlockSelector - Module holder
 * 
 */
@@ -26,7 +26,7 @@ class Reactions {
     unicode: [],
     countBlock: []
   }
-  this.nodes.unicode = settings.code;
+  this.nodes.unicode = settings.emojiCodes;
   this.titleText = settings.title;
   this.appendElementsToWrapper();
   this.count=0;
@@ -42,7 +42,7 @@ class Reactions {
       buttonClass : 'reactions__button',
       buttonWrapperClass : 'reactions__button-wrapper',
       countClicksClass : 'reactions__count',
-      activeButtonClass : 'reactions__elem--active',
+      activeButtonClass : 'reactions__button--active',
       emojiWrapperClass : 'reactions__emoji-wrapper',
       activeButtonWrapper: 'reactions__emoji-wrapper--active'
     }
@@ -152,7 +152,7 @@ class Reactions {
   * @param {HTMLElement} count of clicks
   */
   countClicksToButton(buttonWrapper,emojiWrapper,i){
-    let itemActive = document.querySelector('.reactions__elem--active'); 
+    let itemActive = document.querySelector('.reactions__button--active'); 
     let wrapperActive = document.querySelector('.reactions__emoji-wrapper--active');
     if (itemActive === null){
       buttonWrapper.classList.add(Reactions.CSS.activeButtonClass);
