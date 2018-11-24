@@ -6,12 +6,13 @@
 }
 .reactions__button {
     height: 25px;
-    width: 25px;
-    background-size: cover;
+    width: 25px; 
     margin: 5px;
-    background-image: url(emojis/grinning-face_1f600.png);
+    font-size: 18px;
+    text-align: center;
+    margin-left: 5.5px;
 }
-.reactions__elem--active{
+.reactions__button--active{
     border-radius: 30px;
     background-color: #fff8b5;
 }
@@ -23,6 +24,7 @@
 }
 .reactions__count {
     padding-left: 7px;
+    margin-top: 8px;
 }
 .reactions__text {
     text-align: center;
@@ -30,4 +32,10 @@
 .reactions__emoji {
     display: flex;
     align-items: center;
+}
+.reactions__emoji-wrapper{
+    display: flex;
+}
+.reactions__emoji-wrapper--active{
+    display: flex;
 }
