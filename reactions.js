@@ -20,6 +20,7 @@ class Reactions {
     wrapper: document.querySelector(settings.wrapperBlockSelector),
     title: settings.title,
     emojiBlock: null,
+    emojiWrapper: [],
     buttonWrapper: [],
     button: [],
     unicode: [],
@@ -41,7 +42,9 @@ class Reactions {
       buttonClass : 'reactions__button',
       buttonWrapperClass : 'reactions__button-wrapper',
       countClicksClass : 'reactions__count',
-      activeButtonClass : 'reactions__elem--active'
+      activeButtonClass : 'reactions__elem--active',
+      emojiWrapperClass : 'reactions__emoji-wrapper',
+      activeButtonWrapper: 'reactions__emoji-wrapper--active'
     }
   }
 
@@ -73,7 +76,7 @@ class Reactions {
     * Append emoji wrapper
     * @type {HTMLElement} emojiBlock
     */
-    this.nodes.emojiBlock = this.make('div', Reactions.CSS.emojiClass)
+    this.nodes.emojiBlock = this.make('div', Reactions.CSS.emojiClass);
     this.nodes.wrapper.appendChild(this.nodes.emojiBlock);
 
     /**
@@ -81,6 +84,9 @@ class Reactions {
     * @type {HTMLElement} button
     */
     for (let i = 0; i < this.nodes.unicode.length; i++){
+      this.nodes.emojiWrapper[i] = this.make('div', Reactions.CSS.emojiWrapperClass);
+      this.nodes.wrapper.appendChild(this.nodes.emojiWrapper[i]);
+
       this.nodes.button[i] = this.make('div', Reactions.CSS.buttonClass);
       this.nodes.wrapper.appendChild(this.nodes.button[i]);
     
@@ -113,11 +119,18 @@ class Reactions {
    for (let i = 0; i < this.nodes.unicode.length; i++){
     this.nodes.emojiBlock.appendChild(this.nodes.buttonWrapper[i]);
 
+    this.nodes.emojiBlock.appendChild(this.nodes.emojiWrapper[i]);
+    
+    this.nodes.emojiWrapper[i].appendChild(this.nodes.buttonWrapper[i]);
+
+    this.nodes.emojiWrapper[i].appendChild(this.nodes.countBlock[i]);
+
     this.nodes.buttonWrapper[i].appendChild(this.nodes.button[i]);
 
     this.nodes.button[i].innerText = String.fromCodePoint(this.nodes.unicode[i]);
 
-    this.nodes.emojiBlock.appendChild(this.nodes.countBlock[i]);
+    this.nodes.countBlock[i].innerText = '0'; 
+
     }
     
 
@@ -128,7 +141,7 @@ class Reactions {
     */
    for (let i = 0; i < this.nodes.unicode.length; i++) {
       this.nodes.buttonWrapper[i].addEventListener('click', () => {
-        this.countClicksToButton(this.nodes.buttonWrapper[i],this.nodes.countBlock[i]);
+        this.countClicksToButton(this.nodes.buttonWrapper[i],this.nodes.emojiWrapper[i],i);
       })
     ;}
   };
@@ -138,16 +151,26 @@ class Reactions {
   * @param {HTMLElement} buttonWrapper
   * @param {HTMLElement} count of clicks
   */
-  countClicksToButton(buttonWrapper,countClicks){
+  countClicksToButton(buttonWrapper,emojiWrapper,i){
     let itemActive = document.querySelector('.reactions__elem--active'); 
-    if (itemActive == null){
+    let wrapperActive = document.querySelector('.reactions__emoji-wrapper--active');
+    if (itemActive === null){
       buttonWrapper.classList.add(Reactions.CSS.activeButtonClass);
+      emojiWrapper.classList.add(Reactions.CSS.activeButtonWrapper);
+      this.nodes.countBlock[i].innerHTML = ++this.count;
     }else{
-      if(itemActive == buttonWrapper){
+      if(itemActive === buttonWrapper){
         buttonWrapper.classList.remove(Reactions.CSS.activeButtonClass);
+        emojiWrapper.classList.remove(Reactions.CSS.activeButtonWrapper);
+        this.nodes.countBlock[i].innerHTML = --this.count;
       }else{
-      itemActive.classList.remove(Reactions.CSS.activeButtonClass);
-      buttonWrapper.classList.add(Reactions.CSS.activeButtonClass);
+        let countActive = wrapperActive.querySelector('.reactions__count');
+        countActive.innerHTML = --this.count;
+        itemActive.classList.remove(Reactions.CSS.activeButtonClass);
+        wrapperActive.classList.remove(Reactions.CSS.activeButtonWrapper);
+        buttonWrapper.classList.add(Reactions.CSS.activeButtonClass);
+        emojiWrapper.classList.add(Reactions.CSS.activeButtonWrapper);
+        this.nodes.countBlock[i].innerHTML = ++this.count;
       }
     }  
   };

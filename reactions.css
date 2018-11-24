@@ -21,9 +21,11 @@
     border: 1px solid grey;
     margin-left: 30px;    
     cursor: pointer; 
+    position: static;
 }
 .reactions__count {
     padding-left: 7px;
+    margin-top: 8px;
 }
 .reactions__text {
     text-align: center;
@@ -32,4 +34,10 @@
     display: flex;
     align-items: center;
 }
-
+.reactions__emoji-wrapper{
+    display: flex;
+    position: static;
+}
+.reactions__emoji-wrapper--active{
+    display: flex;
+}
