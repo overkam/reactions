@@ -136,16 +136,36 @@ class Reactions {
        */
       this.nodes.emojiBlock.appendChild(this.nodes.buttonWrapper[i]);
 
+      /**
+       * Append emojiWrapper to emojiBlock
+       */
       this.nodes.emojiBlock.appendChild(this.nodes.emojiWrapper[i]);
       
+      /**
+       * Append buttonWrapper to emojiWrapper
+       */
       this.nodes.emojiWrapper[i].appendChild(this.nodes.buttonWrapper[i]);
 
+      /**
+       * Append countBlock to emojiWrapper
+       */
       this.nodes.emojiWrapper[i].appendChild(this.nodes.countBlock[i]);
 
+      /**
+       * Append button to buttonWrapper
+       */
       this.nodes.buttonWrapper[i].appendChild(this.nodes.button[i]);
 
+      /**
+       * Add emoji to button
+       * @type {string} 
+       */
       this.nodes.button[i].innerText = String.fromCodePoint(this.nodes.unicode[i]);
 
+      /**
+       * Get 0 count to countBlock
+       * @type {String}
+       */
       this.nodes.countBlock[i].innerText = '0'; 
     }
     
