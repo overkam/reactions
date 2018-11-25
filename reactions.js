@@ -1,20 +1,19 @@
 /**
-* @typedef {object} ReactionsConfig
-* @property {string} title  - Text in text area
-* @property {string} wrapperBlockSelector - Module holder
-* @property   {string[]} emojiCodes - uncodes of emijo to buttons
-*/
+ * @typedef {object} ReactionsConfig
+ * @property {string} title  - Text in text area
+ * @property {string} wrapperBlockSelector - Module holder
+ * @property   {string[]} emojiCodes - unicodes of emoji to buttons
+ */
 
 
 /**
-* Creating blocks, adding emoji, text and buttons to general block
-*/
+ * Creating blocks, adding emoji, text and buttons to general block
+ */
 class Reactions {
 
   /**
-  * @param  {ReactionsConfig} settings - module configuration object
-  * @return {void}
-  */
+   * @param  {ReactionsConfig} settings - module configuration obj
+   */
   constructor(settings) {
     this.nodes = {
     wrapper: document.querySelector(settings.wrapperBlockSelector),
@@ -63,29 +62,28 @@ class Reactions {
   }
 
   /**
-   * Append emojiblock, emojiwrapper, buttons and counter to general block
-   * @return {void} 
+   * Append emojiblock, emojiwrapper, buttons and counter to general block 
    */
   appendElementsToWrapper() {
 
     /**
-    * Append title
-    */
+     * Append title
+     */
     this.nodes.title = this.make('div', Reactions.CSS.titleClass);
     this.nodes.wrapper.appendChild(this.nodes.title);
     this.nodes.title.innerHTML = this.titleText;
 
     /**
-    * Append emoji wrapper
-    * @type {HTMLElement} emojiBlock
-    */
+     * Append emoji wrapper
+     * @type {HTMLElement} emojiBlock
+     */
     this.nodes.emojiBlock = this.make('div', Reactions.CSS.emojiClass);
     this.nodes.wrapper.appendChild(this.nodes.emojiBlock);
 
     /**
-    * Create blocks and append them to wrapper
-    * @type {HTMLElement} 
-    */
+     * Create and append blocks to wrapper
+     * @type {HTMLElement} 
+     */
     for (let i = 0; i < this.nodes.unicode.length; i++){
       
       /**
@@ -103,16 +101,16 @@ class Reactions {
       this.nodes.wrapper.appendChild(this.nodes.button[i]);
     
       /**
-      * Append wrappers for button
-      * @type {HTMLElement} buttonWrapper
-      */
+       * Append wrappers for button
+       * @type {HTMLElement} buttonWrapper
+       */
       this.nodes.buttonWrapper[i] = this.make('div', Reactions.CSS.buttonWrapperClass);
       this.nodes.wrapper.appendChild(this.nodes.buttonWrapper[i]);
       
       /**
-      * Append blocks for clicks counter
-      * @type {HTMLElement} countBlock
-      */
+       * Append blocks for clicks counter
+       * @type {HTMLElement} countBlock
+       */
       this.nodes.countBlock[i] = this.make('div', Reactions.CSS.countClicksClass);
       this.nodes.wrapper.appendChild(this.nodes.countBlock[i]);
     }
@@ -122,7 +120,6 @@ class Reactions {
 
   /**
    * Append emoji and counter to emojiBlock 
-   * @return {void} 
    */
   appendElementsToEmojiBlock(){
 
@@ -183,12 +180,11 @@ class Reactions {
   }
 
   /**
-  * Increase or decrease counter after click, add or remove acyive CSS class
-  * @param {HTMLElement} buttonWrapper
-  * @param {HTMLElement} emojiWrapper
-  * @param {HTMLElement} counter
-  * @return {void}
-  */
+   * Increase or decrease counter after click, add or remove active CSS class
+   * @param {HTMLElement} buttonWrapper
+   * @param {HTMLElement} emojiWrapper
+   * @param {HTMLElement} counter
+   */
   countClicksToButton(buttonWrapper,emojiWrapper,counter){
 
     /**
@@ -205,8 +201,6 @@ class Reactions {
 
     /**
      * If there is no active button, add active CSS class 
-     * @param  {HTMLElement} itemActive
-     * @return {void}            
      */
     if (itemActive === null){
       this.addReaction(buttonWrapper,emojiWrapper,counter);
@@ -214,19 +208,13 @@ class Reactions {
     }else{
 
       /**
-       * If clicked button is clicked, remove active CSS class
-       * @param  {HTMLElement} itemActive 
-       * @param  {HTMLElement} buttonWrapper
-       * @return {void}            
+       * If clicked button is active, remove active CSS class
        */
       if(itemActive === buttonWrapper){
         this.removeReaction(buttonWrapper,emojiWrapper,counter);
 
       /**
        * Remove active CSS class for active button and add for clicked button
-       * @param  {HTMLElement} itemActive
-       * @param  {HTMLElement} buttonWrapper
-       * @return {void} 
        */
       }else{
 
@@ -246,8 +234,7 @@ class Reactions {
    * Add CSS active class and increase counter
    * @param {HTMLElement} buttonWrapper 
    * @param {HTMLElement} emojiWrapper  
-   * @param {HTMLElement} counter  
-   * @return {void}     
+   * @param {HTMLElement} counter     
    */
   addReaction(buttonWrapper,emojiWrapper,counter){
     buttonWrapper.classList.add(Reactions.CSS.activeButtonClass);
@@ -255,7 +242,7 @@ class Reactions {
 
     /**
      * Increase counter
-     * @type {HTMLElement}
+     * @type {string}
      */
     counter.innerText = ++this.count;
   }
@@ -265,8 +252,7 @@ class Reactions {
    * @param  {HTMLElement} buttonWrapper 
    * @param  {HTMLElement} emojiWrapper  
    * @param  {HTMLElement} counter       
-   * @param  {HTMLElement} countActive   
-   * @return {void}               
+   * @param  {HTMLElement} countActive                
    */
   removeReaction(buttonWrapper,emojiWrapper,counter,countActive){
     buttonWrapper.classList.remove(Reactions.CSS.activeButtonClass);
@@ -274,14 +260,13 @@ class Reactions {
 
     /**
      * Decrease counter
-     * @type {HTMLElement}
+     * @type {string}
      */
     counter.innerText = --this.count;
 
     /**
      * If we have an active count block write decreased counter
-     * @param  {HTMLElement} countActive 
-     * @return {void}             
+     * @type {string}
      */
     if (countActive !== undefined){
       countActive.innerText = this.count;
