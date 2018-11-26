@@ -50,15 +50,16 @@ class Reactions {
 
   /** 
    * Create blocks and give CSS class
-   * @param {CSSClass} CSSClass - CSS class for block
-   * @returns {HTMLElement} div
+   * @param {string} tagName
+   * @param {string} className - CSS class for block
+   * @returns {HTMLElement} element
    */
   make(tagName, className) {
-    let div = document.createElement(tagName);
+    let element = document.createElement(tagName);
 
-    div.classList.add(className);
+    element.classList.add(className);
 
-    return div;
+    return element;
   }
 
   /**
@@ -213,12 +214,12 @@ class Reactions {
         counter
       );
 
-    }else{
+    } else {
 
       /**
        * If clicked button is active, remove active CSS class
        */
-      if(itemActive === buttonWrapper){
+      if (itemActive === buttonWrapper){
         this.removeReaction(
           buttonWrapper,
           emojiWrapper,
@@ -228,7 +229,7 @@ class Reactions {
       /**
        * Remove active CSS class for active button and add for clicked button
        */
-      }else{
+      } else {
 
         /**
          * Count block of active button
@@ -287,7 +288,6 @@ class Reactions {
 
     /**
      * If we have an active count block write decreased counter
-     * @type {string}
      */
     if (countActive !== undefined){
       countActive.innerText = this.count;
