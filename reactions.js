@@ -177,7 +177,6 @@ class Reactions {
      */
     for (let i = 0; i < this.nodes.unicode.length; i++) {
       this.nodes.buttonWrapper[i].addEventListener('click', () => {
-
         this.countClicksToButton(i);
       });
     }
@@ -216,8 +215,6 @@ class Reactions {
          */
 
         this.removeReaction(this.nodes.wrapperActive);
-
-        this.nodes.countBlock[i].textContent = parseInt(this.nodes.count[i]);
 
         this.addReaction(i);
 
