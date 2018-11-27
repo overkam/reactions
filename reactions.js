@@ -25,14 +25,13 @@ class Reactions {
     unicode: [],
     countBlock: [],
     itemActive: null,
-    wrapperActive: null
-
+    wrapperActive: null,
+    count: []
   }
 
   this.nodes.unicode = settings.emojiCodes;
   this.titleText = settings.title;
   this.appendElementsToWrapper();
-  this.count = 0;
   }
 
   /**
@@ -117,6 +116,8 @@ class Reactions {
        */
       this.nodes.countBlock[i] = this.make('div', Reactions.CSS.countClicksClass);
       this.nodes.wrapper.appendChild(this.nodes.countBlock[i]);
+
+      this.nodes.count[i] = '0';
     }
 
     this.appendElementsToEmojiBlock()
@@ -216,8 +217,8 @@ class Reactions {
 
         this.removeReaction(this.nodes.wrapperActive);
 
-        this.nodes.countBlock[i].textContent = this.count;
-        
+        this.nodes.countBlock[i].textContent = parseInt(this.nodes.count[i]);
+
         this.addReaction(i);
 
       }
@@ -240,7 +241,8 @@ class Reactions {
      * Increase counter
      * @type {string}
      */
-    this.nodes.countBlock[i].textContent = ++this.count;
+    this.nodes.count[i] = parseInt(this.nodes.count[i]) + 1
+    this.nodes.countBlock[i].textContent = this.nodes.count[i];
   }
 
   /**
@@ -260,7 +262,8 @@ class Reactions {
      * Decrease counter
      * @type {string}
      */
-    this.nodes.countBlock[i].textContent = --this.count;
+    this.nodes.count[i] = parseInt(this.nodes.count[i]) - 1
+    this.nodes.countBlock[i].textContent = this.nodes.count[i];
   }
 }
 
