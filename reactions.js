@@ -22,14 +22,13 @@ class Reactions {
     emojiWrapper: [],
     buttonWrapper: [],
     button: [],
-    unicode: [],
     countBlock: [],
     itemActive: null,
-    wrapperActive: null,
-    count: []
+    wrapperActive: null
   }
-
-  this.nodes.unicode = settings.emojiCodes;
+  
+  this.count = [];
+  this.unicode = settings.emojiCodes;
   this.titleText = settings.title;
   this.appendElementsToWrapper();
   }
@@ -87,7 +86,7 @@ class Reactions {
      * Create and append blocks to wrapper
      * @type {HTMLElement} 
      */
-    for (let i = 0; i < this.nodes.unicode.length; i++){
+    for (let i = 0; i < this.unicode.length; i++){
       
       /**
        * Append wrapper to button and count clicks block
@@ -117,7 +116,7 @@ class Reactions {
       this.nodes.countBlock[i] = this.make('div', Reactions.CSS.countClicksClass);
       this.nodes.wrapper.appendChild(this.nodes.countBlock[i]);
 
-      this.nodes.count[i] = '0';
+      this.count[i] = '0';
     }
 
     this.appendElementsToEmojiBlock()
@@ -131,7 +130,7 @@ class Reactions {
     /**
      * Append emojiwrapper to emojiblock and append button and counter in emojiwrapper
      */
-    for (let i = 0; i < this.nodes.unicode.length; i++){
+    for (let i = 0; i < this.unicode.length; i++){
 
       /**
        * Append buttonWrapper to emojiBlock
@@ -162,7 +161,7 @@ class Reactions {
        * Add emoji to button
        * @type {string} 
        */
-      this.nodes.button[i].textContent = String.fromCodePoint(this.nodes.unicode[i]);
+      this.nodes.button[i].textContent = String.fromCodePoint(this.unicode[i]);
 
       /**
        * Get 0 count to countBlock
@@ -175,7 +174,7 @@ class Reactions {
     /**
      * Transfer to counting clicks after click on button
      */
-    for (let i = 0; i < this.nodes.unicode.length; i++) {
+    for (let i = 0; i < this.unicode.length; i++) {
       this.nodes.buttonWrapper[i].addEventListener('click', () => {
         this.countClicksToButton(i);
       });
@@ -238,8 +237,8 @@ class Reactions {
      * Increase counter
      * @type {string}
      */
-    this.nodes.count[i] = parseInt(this.nodes.count[i]) + 1
-    this.nodes.countBlock[i].textContent = this.nodes.count[i];
+    this.count[i] = parseInt(this.count[i]) + 1
+    this.nodes.countBlock[i].textContent = this.count[i];
   }
 
   /**
@@ -259,8 +258,8 @@ class Reactions {
      * Decrease counter
      * @type {string}
      */
-    this.nodes.count[i] = parseInt(this.nodes.count[i]) - 1
-    this.nodes.countBlock[i].textContent = this.nodes.count[i];
+    this.count[i] = parseInt(this.count[i]) - 1
+    this.nodes.countBlock[i].textContent = this.count[i];
   }
 }
 
